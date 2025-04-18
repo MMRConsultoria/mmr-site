@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>MMR Consultoria</title>
+  <link rel="icon" href="Logotipo MMR_transparente.png">
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
     }
     header {
       display: flex;
       align-items: center;
-      padding: 10px 20px;
       background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .logo {
       height: 60px;
@@ -25,31 +26,56 @@
     }
     h1 {
       color: #2c3e50;
+      margin-bottom: 10px;
     }
-    a {
+    p {
+      color: #555;
+      margin-bottom: 40px;
+    }
+    .button {
       display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin: 10px;
+      padding: 14px 28px;
       background-color: #2c3e50;
       color: white;
+      border: none;
+      border-radius: 6px;
       text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
+      font-size: 16px;
+      transition: background-color 0.3s;
     }
-    a:hover {
+    .button:hover {
       background-color: #1a242f;
+    }
+    footer {
+      text-align: center;
+      color: #999;
+      padding: 30px 10px 10px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="MMR_transparente.png" alt="MMR Consultoria" class="logo">
+    <img src="Logotipo MMR_transparente.png" alt="MMR Consultoria" class="logo">
   </header>
   <main>
-    <h1>Bem-vindo à MMR Consultoria</h1>
-    <p>Escolha abaixo o relatório que deseja processar:</p>
-    <a href="https://sangria-hmdfprsr7z7auwy25nvwj4.streamlit.app/" target="_blank">▶️ Acessar Relatório de Sangria</a>
+    <h1>MMR Consultoria</h1>
+    <p>Escolha abaixo o relatório que deseja acessar:</p>
+
+    <a href="https://sangria-hmdfprsr7z7auwy25nvwj4.streamlit.app/" target="_blank" class="button">
+      📊 Processador de Sangria
+    </a>
+
+    <!-- Espaço para futuros relatórios -->
+    <!--
+    <a href="#" class="button">📈 Relatório de Clientes</a>
+    <a href="#" class="button">📉 Relatório de Vendas</a>
+    -->
+
   </main>
+  <footer>
+    &copy; 2025 MMR Consultoria · Todos os direitos reservados
+  </footer>
 </body>
 </html>
-
