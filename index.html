@@ -2,11 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>MMR Consultoria</title>
+  <title>MMR Consultoria - Acesso</title>
   <link rel="icon" href="logo-mmr.png">
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f2f2f2;
       display: flex;
@@ -14,20 +13,83 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      margin: 0;
       text-align: center;
     }
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
     .logo {
-      height: 160px;
+      height: 140px;
       margin-bottom: 20px;
     }
-    h1 {
-      font-size: 2.2rem;
-      color: #333;
+    select, input {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 300px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+
+<div class="container">
   <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
-  <h1>Bem-vindo à MMR Consultoria</h1>
+  <h2>Acesso ao Portal de Relatórios</h2>
+
+  <select id="empresa">
+    <option value="empresa_a">Empresa A</option>
+    <option value="empresa_b">Empresa B</option>
+    <option value="empresa_c">Empresa C</option>
+  </select><br>
+
+  <input type="password" id="senha" placeholder="Digite a senha"><br>
+  <button onclick="validarLogin()">Entrar</button>
+
+  <div class="error" id="erro"></div>
+</div>
+
+<script>
+  function validarLogin() {
+    const empresa = document.getElementById("empresa").value;
+    const senha = document.getElementById("senha").value;
+    const erro = document.getElementById("erro");
+
+    const senhas = {
+      empresa_a: "1234",
+      empresa_b: "abcd",
+      empresa_c: "senha2024"
+    };
+
+    if (senha === senhas[empresa]) {
+      // Redireciona para o app Streamlit com âncora da empresa
+      window.location.href = `https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/#${empresa}`;
+    } else {
+      erro.textContent = "❌ Senha incorreta. Tente novamente.";
+    }
+  }
+</script>
+
 </body>
 </html>
