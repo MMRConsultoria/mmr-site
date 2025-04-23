@@ -58,48 +58,27 @@
   <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
   <h2>Acesso ao Portal de Relatórios</h2>
 
-  <input type="text" id="codigo" placeholder="Código da empresa (ex: 1825)"><br>
+  <input type="text" id="codigo" placeholder="Código da empresa"><br>
   <input type="email" id="email" placeholder="Seu e-mail"><br>
-  <input type="password" id="senha" placeholder="Senha"><br>
+  <input type="password" id="senha" placeholder="Senha de acesso"><br>
   <button onclick="validarLogin()">Entrar</button>
 
   <div class="error" id="erro"></div>
 </div>
 
 <script>
-  const codigoValido = "1825";
   const senhaCorreta = "1234";
 
-  // E-mails cadastrados previamente
-  const emailsCadastrados = [
-    "empresa1@email.com",
-    "financeiro@exemplo.com",
-    "cliente@mmr.com.br"
-  ];
-
   function validarLogin() {
-    const codigo = document.getElementById("codigo").value.trim();
-    const email = document.getElementById("email").value.trim().toLowerCase();
     const senha = document.getElementById("senha").value;
     const erro = document.getElementById("erro");
 
-    if (codigo !== codigoValido) {
-      erro.textContent = "❌ Código da empresa inválido.";
-      return;
-    }
-
-    if (!emailsCadastrados.includes(email)) {
-      erro.textContent = "❌ E-mail não cadastrado.";
-      return;
-    }
-
-    if (senha !== senhaCorreta) {
+    if (senha === senhaCorreta) {
+      // Redireciona ao app
+      window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
+    } else {
       erro.textContent = "❌ Senha incorreta.";
-      return;
     }
-
-    // Sucesso: redireciona
-    window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/#empresa1825";
   }
 </script>
 
