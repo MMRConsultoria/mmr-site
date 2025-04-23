@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>MMR Consultoria - Acesso</title>
+  <title>MMR Consultoria - Login</title>
   <link rel="icon" href="logo-mmr.png">
   <style>
     body {
@@ -26,7 +26,7 @@
       height: 140px;
       margin-bottom: 20px;
     }
-    select, input {
+    input {
       padding: 10px;
       margin-top: 10px;
       font-size: 16px;
@@ -58,36 +58,48 @@
   <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
   <h2>Acesso ao Portal de Relatórios</h2>
 
-  <select id="empresa">
-    <option value="empresa_a">Empresa A</option>
-    <option value="empresa_b">Empresa B</option>
-    <option value="empresa_c">Empresa C</option>
-  </select><br>
-
-  <input type="password" id="senha" placeholder="Digite a senha"><br>
+  <input type="text" id="codigo" placeholder="Código da empresa (ex: 1825)"><br>
+  <input type="email" id="email" placeholder="Seu e-mail"><br>
+  <input type="password" id="senha" placeholder="Senha"><br>
   <button onclick="validarLogin()">Entrar</button>
 
   <div class="error" id="erro"></div>
 </div>
 
 <script>
+  const codigoValido = "1825";
+  const senhaCorreta = "1234";
+
+  // E-mails cadastrados previamente
+  const emailsCadastrados = [
+    "empresa1@email.com",
+    "financeiro@exemplo.com",
+    "cliente@mmr.com.br"
+  ];
+
   function validarLogin() {
-    const empresa = document.getElementById("empresa").value;
+    const codigo = document.getElementById("codigo").value.trim();
+    const email = document.getElementById("email").value.trim().toLowerCase();
     const senha = document.getElementById("senha").value;
     const erro = document.getElementById("erro");
 
-    const senhas = {
-      empresa_a: "1234",
-      empresa_b: "abcd",
-      empresa_c: "senha2024"
-    };
-
-    if (senha === senhas[empresa]) {
-      // Redireciona para o app Streamlit com âncora da empresa
-      window.location.href = `https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/#${empresa}`;
-    } else {
-      erro.textContent = "❌ Senha incorreta. Tente novamente.";
+    if (codigo !== codigoValido) {
+      erro.textContent = "❌ Código da empresa inválido.";
+      return;
     }
+
+    if (!emailsCadastrados.includes(email)) {
+      erro.textContent = "❌ E-mail não cadastrado.";
+      return;
+    }
+
+    if (senha !== senhaCorreta) {
+      erro.textContent = "❌ Senha incorreta.";
+      return;
+    }
+
+    // Sucesso: redireciona
+    window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/#empresa1825";
   }
 </script>
 
