@@ -50,6 +50,9 @@
       color: red;
       margin-top: 10px;
     }
+    #btn-entrar {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -58,11 +61,10 @@
   <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
   <h2>Acesso ao Portal de Relatórios</h2>
 
-  <input type="text" id="codigo" placeholder="Código da empresa"><br>
-  <input type="text" id="empresa" placeholder="Nome da empresa"><br>
+  <input type="text" id="codigo" placeholder="Código da empresa" oninput="verificarCampos()"><br>
+  <input type="text" id="empresa" placeholder="Nome da empresa" oninput="verificarCampos()"><br>
 
-  <!-- Agora o botão NÃO redireciona automaticamente -->
-  <button onclick="validarLogin()">Acessar o Portal</button>
+  <button id="btn-entrar" onclick="irParaApp()">Acessar o Portal</button>
 
   <div class="error" id="erro"></div>
 </div>
@@ -74,9 +76,10 @@
     { codigo: "0041", empresa: "consultoria" }
   ];
 
-  function validarLogin() {
+  function verificarCampos() {
     const codigo = document.getElementById("codigo").value.trim();
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
+    const botao = document.getElementById("btn-entrar");
     const erro = document.getElementById("erro");
 
     const autorizado = usuariosAutorizados.some(
@@ -84,10 +87,16 @@
     );
 
     if (autorizado) {
-      window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
+      botao.style.display = "inline-block";
+      erro.textContent = "";
     } else {
-      erro.textContent = "❌ Código ou nome da empresa inválido.";
+      botao.style.display = "none";
+      erro.textContent = " ";
     }
+  }
+
+  function irParaApp() {
+    window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
   }
 </script>
 
