@@ -87,12 +87,14 @@
       u => u.codigo === codigo && u.empresa === empresa
     );
 
+    console.log("DEBUG | Código:", codigo, "| Empresa:", empresa, "| Autorizado:", autorizado);
+
     if (autorizado) {
       botao.style.display = "inline-block";
       erro.textContent = "";
     } else {
       botao.style.display = "none";
-      erro.textContent = "";
+      erro.textContent = "❌ Código ou nome da empresa inválido.";
     }
   }
 
