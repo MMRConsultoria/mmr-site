@@ -61,16 +61,16 @@
   <input type="text" id="codigo" placeholder="Código da empresa"><br>
   <input type="text" id="empresa" placeholder="Nome da empresa"><br>
 
+  <!-- Agora o botão NÃO redireciona automaticamente -->
   <button onclick="validarLogin()">Acessar o Portal</button>
 
   <div class="error" id="erro"></div>
 </div>
 
 <script>
-  // Lista de códigos válidos e suas empresas
   const usuariosAutorizados = [
     { codigo: "1825", empresa: "mmr" },
-    { codigo: "3377", empresa: "empresaX" },
+    { codigo: "3377", empresa: "empresax" },
     { codigo: "0041", empresa: "consultoria" }
   ];
 
@@ -84,7 +84,6 @@
     );
 
     if (autorizado) {
-      // Redireciona para o app Streamlit
       window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
     } else {
       erro.textContent = "❌ Código ou nome da empresa inválido.";
