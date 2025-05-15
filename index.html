@@ -83,8 +83,8 @@
     );
 
     if (autorizado) {
-      // ✅ Redireciona com parâmetros para o Streamlit
-      window.location.href = `https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/Login?codigo=${codigo}&empresa=${empresa}`;
+      const url = `https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/Login?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
+      window.location.href = url;
     } else {
       erro.textContent = "❌ Código ou nome da empresa inválido.";
     }
