@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>MMR Consultoria - Login</title>
-  <link rel="icon" href="logo-mmr.png">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f2f2f2;
       display: flex;
       flex-direction: column;
@@ -18,20 +17,15 @@
     }
     .container {
       background: #fff;
-      padding: 40px;
+      padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-    .logo {
-      height: 140px;
-      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     input {
       padding: 10px;
       margin-top: 10px;
       font-size: 16px;
-      width: 100%;
-      max-width: 300px;
+      width: 250px;
     }
     button {
       margin-top: 20px;
@@ -42,32 +36,20 @@
       background-color: #4CAF50;
       color: white;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-      height: 24px;
-    }
-    #btn-entrar {
       display: none;
+    }
+    button.show {
+      display: inline-block;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
-  <h2>Acesso ao Portal de Relatórios</h2>
-
+  <h2>Acesso ao Portal</h2>
   <input type="text" id="codigo" placeholder="Código da empresa" oninput="verificarCampos()"><br>
   <input type="text" id="empresa" placeholder="Nome da empresa" oninput="verificarCampos()"><br>
-
-  <button id="btn-entrar" onclick="irParaApp()">Acessar o Portal</button>
-
-  <div class="error" id="erro"></div>
+  <button id="acessar" onclick="acessar()">Acessar o Portal</button>
 </div>
 
 <script>
@@ -80,25 +62,20 @@
   function verificarCampos() {
     const codigo = document.getElementById("codigo").value.trim();
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
-    const botao = document.getElementById("btn-entrar");
-    const erro = document.getElementById("erro");
+    const botao = document.getElementById("acessar");
 
     const autorizado = usuariosAutorizados.some(
       u => u.codigo === codigo && u.empresa === empresa
     );
 
-    console.log("DEBUG | Código:", codigo, "| Empresa:", empresa, "| Autorizado:", autorizado);
-
     if (autorizado) {
-      botao.style.display = "inline-block";
-      erro.textContent = "";
+      botao.classList.add("show");
     } else {
-      botao.style.display = "none";
-      erro.textContent = "❌ Código ou nome da empresa inválido.";
+      botao.classList.remove("show");
     }
   }
 
-  function irParaApp() {
+  function acessar() {
     window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
   }
 </script>
