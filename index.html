@@ -78,6 +78,9 @@
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
     const erro = document.getElementById("erro");
 
+    console.log("Digitado:", codigo, empresa);
+    console.log("Comparando com:", usuariosAutorizados);
+
     const autorizado = usuariosAutorizados.some(
       u => u.codigo === codigo && u.empresa === empresa
     );
@@ -90,6 +93,3 @@
     }
   }
 </script>
-
-</body>
-</html>
