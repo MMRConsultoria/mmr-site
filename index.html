@@ -36,7 +36,12 @@
       background-color: #4CAF50;
       color: white;
       cursor: pointer;
-      display: none; /* escondido por padrão */
+      display: none;
+    }
+    .debug {
+      font-size: 12px;
+      color: gray;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -47,6 +52,7 @@
   <input type="text" id="codigo" placeholder="Código da empresa" oninput="verificarCampos()"><br>
   <input type="text" id="empresa" placeholder="Nome da empresa" oninput="verificarCampos()"><br>
   <button id="acessar" onclick="acessar()">Acessar o Portal</button>
+  <div class="debug" id="debugMsg"></div>
 </div>
 
 <script>
@@ -60,10 +66,13 @@
     const codigo = document.getElementById("codigo").value.trim();
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
     const botao = document.getElementById("acessar");
+    const debug = document.getElementById("debugMsg");
 
     const autorizado = usuariosAutorizados.some(
-      u => u.codigo === codigo && u.empresa === empresa
+      u => u.codigo === codigo && u.empresa.toLowerCase() === empresa
     );
+
+    debug.textContent = `Código: ${codigo} | Empresa: ${empresa} | Autorizado: ${autorizado}`;
 
     if (autorizado) {
       botao.style.display = "inline-block";
