@@ -59,12 +59,34 @@
   <h2>Acesso ao Portal de Relatórios</h2>
 
   <input type="text" id="codigo" placeholder="Código da empresa"><br>
-  <input type="email" id="email" placeholder="Seu e-mail"><br>
+  <input type="text" id="empresa" placeholder="Empresa"><br>
 
-  
-  <a href="https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/">
-    <button>Acessar o Portal</button>
-  </a>
+  <button onclick="validarLogin()">Acessar o Portal</button>
+
+  <div class="error" id="erro"></div>
+</div>
+
+<script>
+  const usuariosAutorizados = [
+    { codigo: "1825", empresa: "GrupoFit" },
+    { codigo: "3377", empresa: "empresaX" },
+    { codigo: "0041", empresa: "consultoria" }
+  ];
+
+  function validarLogin() {
+    const codigo = document.getElementById("codigo").value.trim();
+    const empresa = document.getElementById("empresa").value.trim().toLowerCase();
+    const erro = document.getElementById("erro");
+
+    const autorizado = usuariosAutorizados.some(u => u.codigo === codigo && u.empresa === empresa);
+
+    if (autorizado) {
+      window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
+    } else {
+      erro.textContent = "❌ Código ou empresa inválida.";
+    }
+  }
+</script>
 
 </body>
 </html>
