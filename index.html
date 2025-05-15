@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>MMR Consultoria - Login</title>
+  <link rel="icon" href="logo-mmr.png">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f2f2f2;
       display: flex;
       flex-direction: column;
@@ -17,15 +18,20 @@
     }
     .container {
       background: #fff;
-      padding: 30px;
+      padding: 40px;
       border-radius: 16px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      height: 140px;
+      margin-bottom: 20px;
     }
     input {
       padding: 10px;
       margin-top: 10px;
       font-size: 16px;
-      width: 250px;
+      width: 100%;
+      max-width: 300px;
     }
     button {
       margin-top: 20px;
@@ -36,11 +42,12 @@
       background-color: #4CAF50;
       color: white;
       cursor: pointer;
-      display: none;
     }
-    .debug {
-      font-size: 12px;
-      color: gray;
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
       margin-top: 10px;
     }
   </style>
@@ -48,41 +55,39 @@
 <body>
 
 <div class="container">
-  <h2>Acesso ao Portal</h2>
-  <input type="text" id="codigo" placeholder="Código da empresa" oninput="verificarCampos()"><br>
-  <input type="text" id="empresa" placeholder="Nome da empresa" oninput="verificarCampos()"><br>
-  <button id="acessar" onclick="acessar()">Acessar o Portal</button>
-  <div class="debug" id="debugMsg"></div>
+  <img src="logo-mmr.png" alt="MMR Consultoria" class="logo">
+  <h2>Acesso ao Portal de Relatórios</h2>
+
+  <input type="text" id="codigo" placeholder="Código da empresa"><br>
+  <input type="text" id="empresa" placeholder="Nome da empresa"><br>
+
+  <button onclick="validarLogin()">Acessar o Portal</button>
+
+  <div class="error" id="erro"></div>
 </div>
 
 <script>
   const usuariosAutorizados = [
-    { codigo: "1825", empresa: "GrupoFit" },
+    { codigo: "1825", empresa: "mmr" },
     { codigo: "3377", empresa: "empresax" },
     { codigo: "0041", empresa: "consultoria" }
   ];
 
-  function verificarCampos() {
+  function validarLogin() {
     const codigo = document.getElementById("codigo").value.trim();
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
-    const botao = document.getElementById("acessar");
-    const debug = document.getElementById("debugMsg");
+    const erro = document.getElementById("erro");
 
     const autorizado = usuariosAutorizados.some(
-      u => u.codigo === codigo && u.empresa.toLowerCase() === empresa
+      u => u.codigo === codigo && u.empresa === empresa
     );
 
-    debug.textContent = `Código: ${codigo} | Empresa: ${empresa} | Autorizado: ${autorizado}`;
-
     if (autorizado) {
-      botao.style.display = "inline-block";
+      // ✅ Redireciona com parâmetros para o Streamlit
+      window.location.href = `https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/Login?codigo=${codigo}&empresa=${empresa}`;
     } else {
-      botao.style.display = "none";
+      erro.textContent = "❌ Código ou nome da empresa inválido.";
     }
-  }
-
-  function acessar() {
-    window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
   }
 </script>
 
