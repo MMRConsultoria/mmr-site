@@ -60,27 +60,11 @@
 
   <input type="text" id="codigo" placeholder="Código da empresa"><br>
   <input type="email" id="email" placeholder="Seu e-mail"><br>
-  <input type="password" id="senha" placeholder="Senha de acesso"><br>
-  <button onclick="validarLogin()">Entrar</button>
 
-  <div class="error" id="erro"></div>
-</div>
-
-<script>
-  const senhaCorreta = "1234";
-
-  function validarLogin() {
-    const senha = document.getElementById("senha").value;
-    const erro = document.getElementById("erro");
-
-    if (senha === senhaCorreta) {
-      // Redireciona ao app
-      window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
-    } else {
-      erro.textContent = "❌ Senha incorreta.";
-    }
-  }
-</script>
+  
+  <a href="https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/">
+  <button>Acessar o Portal</button>
+</a>
 
 </body>
 </html>
