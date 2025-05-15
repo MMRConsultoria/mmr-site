@@ -59,7 +59,7 @@
   <h2>Acesso ao Portal de Relatórios</h2>
 
   <input type="text" id="codigo" placeholder="Código da empresa"><br>
-  <input type="text" id="empresa" placeholder="Empresa"><br>
+  <input type="text" id="empresa" placeholder="Nome da empresa"><br>
 
   <button onclick="validarLogin()">Acessar o Portal</button>
 
@@ -67,7 +67,7 @@
 </div>
 
 <script>
-  // Lista de códigos e empresas válidas
+  // Lista de códigos válidos e suas empresas
   const usuariosAutorizados = [
     { codigo: "1825", empresa: "mmr" },
     { codigo: "3377", empresa: "empresaX" },
@@ -79,12 +79,15 @@
     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
     const erro = document.getElementById("erro");
 
-    const autorizado = usuariosAutorizados.some(u => u.codigo === codigo && u.empresa === empresa);
+    const autorizado = usuariosAutorizados.some(
+      u => u.codigo === codigo && u.empresa === empresa
+    );
 
     if (autorizado) {
+      // Redireciona para o app Streamlit
       window.location.href = "https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/";
     } else {
-      erro.textContent = "❌ Código ou empresa inválida.";
+      erro.textContent = "❌ Código ou nome da empresa inválido.";
     }
   }
 </script>
