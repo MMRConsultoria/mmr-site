@@ -84,7 +84,7 @@
     const autorizado = usuariosAutorizados.some(
       u => u.codigo === codigo && u.empresa === empresa
     );
-  #nwoaw3pb4zwsyazihcgxtr
+ 
     if (autorizado) {
       const url = `https://nwoaw3pb4zwsyazihcgxtr.streamlit.app/Login?codigo=${encodeURIComponent(codigo)}&empresa=${encodeURIComponent(empresa)}`;
       window.location.href = url;
